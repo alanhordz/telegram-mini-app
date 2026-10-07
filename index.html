@@ -1,19 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Моя Mini App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Список покупок</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <h1>Приложение работает</h1>
-  <p>Если вы видите этот текст, страница загружается правильно.</p>
+    <header class="app-header">
+        <h1>🛒 Список покупок</h1>
+        <p id="user-greeting" class="greeting">Загрузка...</p>
+    </header>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <script>
-    const tg = window.Telegram.WebApp;
-    tg.ready();
-    tg.expand();
-  </script>
+    <main class="content">
+        <!-- Форма добавления -->
+        <form id="add-form" class="add-form">
+            <input
+                type="text"
+                id="product-input"
+                placeholder="Добавить товар..."
+                autocomplete="off"
+                maxlength="100"
+            >
+            <button type="submit" class="btn-add">+</button>
+        </form>
+
+        <!-- Список покупок -->
+        <ul id="shopping-list" class="shopping-list"></ul>
+
+        <!-- Пустое состояние -->
+        <div id="empty-state" class="empty-state hidden">
+            <p>📭 Список пока пуст</p>
+            <p class="hint">Добавьте первый товар</p>
+        </div>
+
+        <!-- Статистика -->
+        <div id="stats" class="stats hidden">
+            <span>📦 Осталось: <b id="stat-remaining">0</b></span>
+            <span>✅ Куплено: <b id="stat-bought">0</b></span>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <button id="btn-clear-bought" class="btn-secondary">
+            🗑 Убрать купленное
+        </button>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
